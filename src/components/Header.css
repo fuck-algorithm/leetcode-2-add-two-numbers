@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #1a1a2e;
+  border-bottom: 1px solid #2d2d44;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffa116;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.header-title:hover {
+  color: #ffb84d;
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b3b3b3;
+  transition: color 0.2s ease;
+}
+
+.github-link:hover {
+  color: #ffffff;
+}
+
+.github-icon {
+  width: 24px;
+  height: 24px;
+}

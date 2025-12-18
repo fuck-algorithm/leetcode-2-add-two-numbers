@@ -1,0 +1,114 @@
+.code-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.code-language {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.code-container {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 0;
+}
+
+.code-pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.code-line {
+  display: flex;
+  align-items: flex-start;
+  padding: 2px 16px;
+  transition: background-color 0.2s ease;
+  min-height: 24px;
+}
+
+.code-line.highlighted {
+  background-color: rgba(255, 161, 22, 0.2);
+  border-left: 3px solid #ffa116;
+  padding-left: 13px;
+}
+
+.line-number {
+  display: inline-block;
+  width: 30px;
+  color: #666;
+  text-align: right;
+  margin-right: 16px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.code-line code {
+  flex: 1;
+  white-space: pre !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace !important;
+  tab-size: 4;
+}
+
+.code-line code * {
+  white-space: pre !important;
+}
+
+.leading-spaces {
+  white-space: pre !important;
+}
+
+.variable-values {
+  display: flex;
+  gap: 8px;
+  margin-left: 16px;
+  flex-wrap: wrap;
+}
+
+.variable-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: 'Fira Code', monospace;
+  white-space: nowrap;
+}
+
+.variable-badge.pointer {
+  background-color: rgba(86, 156, 214, 0.3);
+  color: #9cdcfe;
+  border: 1px solid rgba(86, 156, 214, 0.5);
+}
+
+.variable-badge.number {
+  background-color: rgba(181, 206, 168, 0.3);
+  color: #b5cea8;
+  border: 1px solid rgba(181, 206, 168, 0.5);
+}
+
+.variable-badge.node {
+  background-color: rgba(206, 145, 120, 0.3);
+  color: #ce9178;
+  border: 1px solid rgba(206, 145, 120, 0.5);
+}

@@ -1,0 +1,219 @@
+# Implementation Plan
+
+- [x] 1. Initialize project structure and configuration
+  - [x] 1.1 Create React + TypeScript + Vite project
+    - Initialize project with `npm create vite@latest . -- --template react-ts`
+    - Configure TypeScript strict mode
+    - _Requirements: 7.1, 7.2_
+  - [x] 1.2 Install dependencies
+    - Install D3.js: `npm install d3 @types/d3`
+    - Install Prism.js: `npm install prismjs @types/prismjs`
+    - Install testing libraries: `npm install -D vitest @testing-library/react @testing-library/user-event jsdom fast-check`
+    - _Requirements: 2.1, 4.1_
+  - [x] 1.3 Configure ESLint and Prettier
+    - Set up ESLint with TypeScript rules
+    - Configure Prettier for consistent formatting
+    - _Requirements: 7.2_
+  - [x] 1.4 Create GitHub Actions workflow for deployment
+    - Create `.github/workflows/deploy.yml`
+    - Configure build, lint, and deploy steps
+    - Set up GitHub Pages deployment
+    - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
+
+- [x] 2. Implement core data types and algorithm engine
+  - [x] 2.1 Create TypeScript type definitions
+    - Define ListNode class
+    - Define AlgorithmStep, VariableState, PointerState interfaces
+    - Create types.ts in src/core/
+    - _Requirements: 5.1_
+  - [x] 2.2 Implement linked list utilities
+    - Create arrayToLinkedList conversion function
+    - Create linkedListToArray conversion function
+    - Implement in src/utils/linkedList.ts
+    - _Requirements: 4.1, 5.1_
+  - [x] 2.3 Write property test for linked list utilities
+    - **Property 4: Step Generation Completeness** (partial - data structure validation)
+    - Test round-trip conversion: arrayToLinkedList then linkedListToArray returns original array
+    - **Validates: Requirements 5.1**
+  - [x] 2.4 Implement algorithm step generator
+    - Create stepGenerator.ts that executes addTwoNumbers algorithm
+    - Capture state at each significant operation
+    - Generate AlgorithmStep array with all required fields
+    - _Requirements: 5.1, 5.2_
+  - [x] 2.5 Write property test for step generator
+    - **Property 4: Step Generation Completeness**
+    - For any valid input arrays, verify all steps contain required fields
+    - Verify step sequence captures all state changes
+    - **Validates: Requirements 5.1, 5.2**
+
+- [x] 3. Checkpoint - Ensure core logic tests pass
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [x] 4. Implement Header component
+  - [x] 4.1 Create Header component with title and links
+    - Display "2. 两数相加" as clickable title linking to LeetCode
+    - Add GitHub icon in top-right corner linking to repository
+    - Style header with flexbox layout
+    - _Requirements: 1.1, 1.2, 1.3, 1.4_
+  - [x] 4.2 Write unit tests for Header component
+    - Test title text and link href
+    - Test GitHub icon presence and link href
+    - _Requirements: 1.1, 1.2, 1.3, 1.4_
+
+- [x] 5. Implement CodePanel component with debug features
+  - [x] 5.1 Create CodePanel component structure
+    - Display Java code with line numbers
+    - Integrate Prism.js for syntax highlighting
+    - _Requirements: 2.1, 2.5_
+  - [x] 5.2 Implement current line highlighting
+    - Accept currentLine prop
+    - Apply highlight style to executing line
+    - _Requirements: 2.2_
+  - [x] 5.3 Implement inline variable display
+    - Accept variables prop with VariableState array
+    - Display variable values after corresponding code lines
+    - Show l1, l2, carry, p, newHead values
+    - _Requirements: 2.3, 2.4_
+  - [x] 5.4 Write property test for CodePanel synchronization
+    - **Property 3: Step-UI Synchronization** (code panel portion)
+    - For any step, verify correct line is highlighted
+    - Verify all variables are displayed at correct lines
+    - **Validates: Requirements 2.2, 2.3**
+
+- [x] 6. Implement VisualizationPanel with D3.js
+  - [x] 6.1 Create VisualizationPanel component structure
+    - Set up D3.js SVG container
+    - Define layout for l1, l2, and result linked lists
+    - Add labels for each linked list
+    - _Requirements: 4.1, 4.6_
+  - [x] 6.2 Implement linked list node rendering
+    - Render nodes as rectangles with values
+    - Draw arrows between nodes
+    - Handle null/end of list indicator
+    - _Requirements: 4.3_
+  - [x] 6.3 Write property test for node rendering
+    - **Property 5: Node Rendering Consistency**
+    - For any linked list, verify each node displays value and arrow
+    - **Validates: Requirements 4.3**
+  - [x] 6.4 Implement pointer position indicators
+    - Show current position of l1, l2, p pointers
+    - Animate pointer movement between steps
+    - _Requirements: 4.4_
+  - [x] 6.5 Implement carry value display
+    - Display carry value prominently when non-zero
+    - Position carry indicator in visualization
+    - _Requirements: 4.5_
+  - [x] 6.6 Write property test for carry display
+    - **Property 6: Carry Display Correctness**
+    - For any step with carry > 0, verify carry is displayed
+    - **Validates: Requirements 4.5**
+  - [x] 6.7 Implement result list progressive rendering
+    - Render result list as it grows during algorithm execution
+    - _Requirements: 4.2_
+
+- [x] 7. Checkpoint - Ensure visualization tests pass
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [x] 8. Implement ControlPanel with keyboard shortcuts
+  - [x] 8.1 Create ControlPanel component structure
+    - Create "上一步 (←)" button
+    - Create "下一步 (→)" button
+    - Create "播放 (Space)" / "暂停 (Space)" toggle button
+    - _Requirements: 3.1, 3.2, 3.3, 3.4_
+  - [x] 8.2 Implement button state management
+    - Disable "上一步" at first step
+    - Disable "下一步" at last step
+    - Toggle button text based on isPlaying state
+    - _Requirements: 3.5, 3.6_
+  - [x] 8.3 Implement keyboard shortcuts hook
+    - Create useKeyboardShortcuts hook
+    - Bind Left Arrow to previous step
+    - Bind Right Arrow to next step
+    - Bind Space to play/pause toggle
+    - _Requirements: 3.1, 3.2, 3.3_
+  - [x] 8.4 Write property test for step navigation
+    - **Property 1: Step Navigation Consistency**
+    - For any valid step index, verify previous/next navigation
+    - **Validates: Requirements 3.1, 3.2**
+  - [x] 8.5 Write property test for play/pause toggle
+    - **Property 2: Play/Pause Toggle Consistency**
+    - For any isPlaying state, verify toggle produces negation
+    - **Validates: Requirements 3.3**
+
+- [x] 9. Implement FloatingBall component
+  - [x] 9.1 Download and add QR code image to assets
+    - Download image from provided URL
+    - Save to src/assets/wechat-qr.png
+    - _Requirements: 6.1_
+  - [x] 9.2 Create FloatingBall component
+    - Position in bottom-right corner
+    - Display WeChat group icon with "交流群" text
+    - _Requirements: 6.1_
+  - [x] 9.3 Implement hover popup with QR code
+    - Show popup on hover with QR code image
+    - Display instruction text "使用微信扫码发送 leetcode 加入算法交流群"
+    - Maintain image aspect ratio
+    - Hide popup on mouse leave
+    - _Requirements: 6.2, 6.3, 6.4, 6.5_
+  - [x] 9.4 Write unit tests for FloatingBall component
+    - Test floating ball renders with correct text
+    - Test hover shows popup
+    - Test image aspect ratio preservation
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
+
+- [x] 10. Implement App component and state management
+  - [x] 10.1 Create useAlgorithmState hook
+    - Manage currentStep, steps, isPlaying state
+    - Implement step navigation functions
+    - Implement play/pause toggle
+    - _Requirements: 5.3, 5.4_
+  - [x] 10.2 Create useAutoPlay hook
+    - Implement auto-advance timer when isPlaying
+    - Configure 1 second default interval
+    - Clean up timer on unmount or pause
+    - _Requirements: 5.4_
+  - [x] 10.3 Integrate all components in App
+    - Compose Header, CodePanel, VisualizationPanel, ControlPanel, FloatingBall
+    - Wire up state and event handlers
+    - _Requirements: 8.1_
+  - [x] 10.4 Write property test for step-UI synchronization
+    - **Property 3: Step-UI Synchronization**
+    - For any step, verify all UI components reflect same step state
+    - **Validates: Requirements 5.3**
+  - [x] 10.5 Write property test for input change regeneration
+    - **Property 7: Input Change Regeneration**
+    - For any input change, verify steps are regenerated correctly
+    - **Validates: Requirements 5.5**
+
+- [x] 11. Implement responsive single-screen layout
+  - [x] 11.1 Create CSS layout styles
+    - Use CSS Grid or Flexbox for main layout
+    - Ensure all components fit in viewport
+    - Set minimum supported size 1280x720
+    - _Requirements: 8.1, 8.2, 8.3_
+  - [x] 11.2 Add responsive adjustments
+    - Adjust component sizes for different viewport sizes
+    - Maintain single-screen constraint
+    - _Requirements: 8.2_
+  - [x] 11.3 Write property test for responsive layout
+    - **Property 8: Responsive Layout Constraint**
+    - For viewport sizes >= 1280x720, verify no scrolling required
+    - **Validates: Requirements 8.2**
+
+- [x] 12. Final integration and polish
+  - [x] 12.1 Add Java code constant
+    - Create constant with the addTwoNumbers Java code
+    - Map code lines to step generator
+    - _Requirements: 2.1_
+  - [x] 12.2 Configure default example inputs
+    - Set default l1 = [2,4,3], l2 = [5,6,4]
+    - Generate initial steps on load
+    - _Requirements: 4.1_
+  - [x] 12.3 Final styling and polish
+    - Apply consistent color scheme
+    - Add transitions and animations
+    - Ensure accessibility compliance
+    - _Requirements: 8.1_
+
+- [x] 13. Final Checkpoint - Ensure all tests pass
+  - Ensure all tests pass, ask the user if questions arise.

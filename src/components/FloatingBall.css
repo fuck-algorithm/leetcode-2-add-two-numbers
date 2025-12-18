@@ -1,0 +1,77 @@
+.floating-ball-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+}
+
+.floating-ball {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
+  box-shadow: 0 4px 12px rgba(7, 193, 96, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-ball:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(7, 193, 96, 0.5);
+}
+
+.wechat-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.ball-text {
+  font-size: 10px;
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.qr-popup {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.2s ease;
+  min-width: 280px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.qr-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  aspect-ratio: auto;
+}
+
+.qr-hint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+}

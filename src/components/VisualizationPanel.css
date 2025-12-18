@@ -1,0 +1,375 @@
+.visualization-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a2e;
+  border-radius: 8px;
+  padding: 16px;
+  height: 100%;
+}
+
+.visualization-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+/* 标题样式 */
+.viz-title {
+  font-size: 14px;
+  font-weight: 600;
+  fill: #9ca3af;
+  text-anchor: middle;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.list-label {
+  font-size: 18px;
+  font-weight: 700;
+  text-anchor: start;
+}
+
+/* 节点样式 - 等待计算（未处理节点）*/
+.node-rect {
+  fill: #3d4555;
+  stroke: #5a6577;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.node-rect.waiting {
+  fill: #2d3a4d;
+  stroke: #4a5568;
+  stroke-width: 2;
+}
+
+/* 正在计算的节点 - 高亮显示 */
+.node-rect.computing {
+  fill: #1e3a5f;
+  stroke: #3b82f6;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+  animation: computingPulse 1s ease-in-out infinite;
+}
+
+@keyframes computingPulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5));
+  }
+  50% { 
+    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.8));
+  }
+}
+
+/* 已计算的节点 - 完成状态 */
+.node-rect.computed {
+  fill: #1a2e1a;
+  stroke: #22c55e;
+  stroke-width: 2;
+  opacity: 0.85;
+}
+
+/* 兼容旧类名 */
+.node-rect.highlighted {
+  fill: #1e3a5f;
+  stroke: #3b82f6;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+}
+
+.node-rect.visited {
+  fill: #1a2e1a;
+  stroke: #22c55e;
+  stroke-width: 2;
+  opacity: 0.85;
+}
+
+/* 结果链表节点 */
+.node-rect.result-node {
+  fill: #1e3a2f;
+  stroke: #4ade80;
+  stroke-width: 2;
+}
+
+/* 结果链表正在写入的节点 */
+.node-rect.result-node.highlighted,
+.node-rect.result-node.computing {
+  fill: #2d5a4a;
+  stroke: #4ade80;
+  stroke-width: 4;
+  filter: drop-shadow(0 0 15px rgba(74, 222, 128, 0.6));
+}
+
+.node-glow {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+.node-value {
+  font-size: 22px;
+  font-weight: 700;
+  fill: #ffffff;
+  text-anchor: middle;
+}
+
+/* 等待计算节点的文字 */
+.node-value.waiting-text {
+  fill: #9ca3af;
+}
+
+/* 正在计算节点的文字 */
+.node-value.computing-text {
+  fill: #60a5fa;
+  font-weight: 800;
+}
+
+/* 已计算节点的文字 */
+.node-value.computed-text,
+.node-value.visited-text {
+  fill: #4ade80;
+}
+
+.power-label {
+  font-size: 10px;
+  fill: #6b7280;
+  text-anchor: middle;
+}
+
+.pointer-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* 箭头样式 */
+.arrow-line {
+  stroke: #4b5563;
+  stroke-width: 2;
+}
+
+.arrow-head-fill {
+  fill: #4b5563;
+}
+
+.null-indicator {
+  font-size: 13px;
+  fill: #6b7280;
+  font-style: italic;
+}
+
+.null-text {
+  font-size: 12px;
+  fill: #6b7280;
+}
+
+/* 数据流样式 */
+.flow-line {
+  animation: flowDash 0.6s linear infinite;
+}
+
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.flow-value {
+  font-size: 16px;
+  font-weight: 700;
+  fill: #1a1a2e;
+  text-anchor: middle;
+}
+
+.flow-label {
+  font-size: 11px;
+  fill: #4ade80;
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+/* 数据流标签 */
+.data-flow-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+  opacity: 0.9;
+}
+
+/* 计算区域样式 */
+.compute-box {
+  fill: rgba(139, 92, 246, 0.15);
+  stroke: #8b5cf6;
+  stroke-width: 2;
+}
+
+.compute-title {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #8b5cf6;
+  text-anchor: middle;
+}
+
+.compute-expression {
+  font-size: 16px;
+  font-weight: 600;
+  fill: #ffffff;
+  text-anchor: middle;
+}
+
+.compute-result {
+  font-size: 11px;
+  fill: #9ca3af;
+  text-anchor: middle;
+}
+
+.result-highlight {
+  fill: rgba(74, 222, 128, 0.3);
+  stroke: #4ade80;
+  stroke-width: 1;
+}
+
+.result-digit {
+  font-size: 16px;
+  font-weight: 700;
+  fill: #4ade80;
+  text-anchor: middle;
+}
+
+/* 进位显示样式 */
+.carry-box {
+  fill: rgba(75, 85, 99, 0.2);
+  stroke: #4b5563;
+  stroke-width: 2;
+}
+
+.carry-box.active {
+  fill: rgba(255, 161, 22, 0.2);
+  stroke: #ffa116;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 15px rgba(255, 161, 22, 0.4));
+}
+
+.carry-icon {
+  font-size: 20px;
+  text-anchor: middle;
+}
+
+.carry-label {
+  font-size: 12px;
+  fill: #9ca3af;
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+.carry-hint {
+  font-size: 10px;
+  fill: #6b7280;
+  text-anchor: middle;
+}
+
+.carry-value {
+  font-size: 32px;
+  font-weight: 700;
+  fill: #4b5563;
+  text-anchor: middle;
+}
+
+.carry-value.active {
+  fill: #ffa116;
+}
+
+/* 结果流样式 */
+.result-flow-value {
+  font-size: 16px;
+  font-weight: 700;
+  fill: #1a1a2e;
+  text-anchor: middle;
+}
+
+/* 进位流样式 */
+.carry-flow-line {
+  animation: flowDash 0.6s linear infinite;
+}
+
+.carry-flow-label {
+  font-size: 11px;
+  fill: #ffa116;
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+/* 数字含义 */
+.number-meaning {
+  font-size: 14px;
+  font-weight: 600;
+  fill: #6b7280;
+  font-style: italic;
+}
+
+/* 状态图例 */
+.legend-group {
+  font-size: 11px;
+}
+
+.legend-rect {
+  rx: 4;
+  ry: 4;
+}
+
+.legend-rect.waiting {
+  fill: #2d3a4d;
+  stroke: #4a5568;
+  stroke-width: 1.5;
+}
+
+.legend-rect.computing {
+  fill: #1e3a5f;
+  stroke: #3b82f6;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+.legend-rect.computed {
+  fill: #1a2e1a;
+  stroke: #22c55e;
+  stroke-width: 1.5;
+}
+
+.legend-text {
+  fill: #9ca3af;
+  font-size: 10px;
+  text-anchor: start;
+}
+
+.legend-title {
+  fill: #6b7280;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* 增强数据流箭头 */
+.data-flow-arrow {
+  animation: flowPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes flowPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.flow-arrow-head {
+  animation: arrowBounce 0.8s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
