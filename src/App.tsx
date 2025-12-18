@@ -1,4 +1,5 @@
 import { Header } from './components/Header'
+import { DataInput } from './components/DataInput'
 import { CodePanel } from './components/CodePanel'
 import { VisualizationPanel } from './components/VisualizationPanel'
 import { ControlPanel } from './components/ControlPanel'
@@ -14,12 +15,15 @@ function App() {
     currentStepData,
     isPlaying,
     totalSteps,
+    l1Input,
+    l2Input,
     goToPrevious,
     goToNext,
     togglePlayPause,
     pause,
     reset,
     goToStep,
+    updateInputs,
   } = useAlgorithmState()
 
   // 自动播放
@@ -51,6 +55,7 @@ function App() {
   return (
     <div className="app">
       <Header />
+      <DataInput l1={l1Input} l2={l2Input} onDataChange={updateInputs} />
       <main className="main-content">
         <div className="left-panel">
           <CodePanel currentLine={codeLine} variables={variables} />

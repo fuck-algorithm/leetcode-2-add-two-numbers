@@ -1,0 +1,125 @@
+.data-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 24px;
+  background-color: #1a1a2e;
+  border-bottom: 1px solid #2d2d44;
+}
+
+.data-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.input-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  min-width: 24px;
+}
+
+.data-input-field {
+  width: 120px;
+  padding: 4px 8px;
+  font-size: 13px;
+  background-color: #2d2d44;
+  border: 1px solid #3d3d5c;
+  border-radius: 4px;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.data-input-field:focus {
+  border-color: #ffa116;
+}
+
+.data-input-field.error {
+  border-color: #ef4444;
+}
+
+.data-input-field::placeholder {
+  color: #6b7280;
+}
+
+.error-tip {
+  position: absolute;
+  top: 100%;
+  left: 30px;
+  font-size: 11px;
+  color: #ef4444;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.apply-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #ffa116;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.apply-btn:hover {
+  background-color: #ffb84d;
+}
+
+.random-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #3d3d5c;
+  color: #ffffff;
+  border: 1px solid #4d4d6c;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.random-btn:hover {
+  background-color: #4d4d6c;
+  border-color: #5d5d7c;
+}
+
+.preset-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.preset-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.preset-btn {
+  padding: 2px 10px;
+  font-size: 11px;
+  background-color: transparent;
+  color: #9ca3af;
+  border: 1px solid #3d3d5c;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+  background-color: #2d2d44;
+  color: #ffa116;
+  border-color: #ffa116;
+}
