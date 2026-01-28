@@ -490,7 +490,7 @@ function drawCarryDisplay(
     .attr('x', boxWidth / 2)
     .attr('y', 28)
     .attr('class', 'carry-icon')
-    .text(carry > 0 ? '�' :  '📭')
+    .text(carry > 0 ? '📬' : '📭')
 
   // 进位标签 - 改为更清晰的说明
   carryGroup
